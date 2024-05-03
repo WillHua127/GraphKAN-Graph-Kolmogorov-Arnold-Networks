@@ -17,7 +17,7 @@ class KanGNN(torch.nn.Module):
     def __init__(self, in_feat, hidden_feat, out_feat, grid_feat, num_layers, use_bias=False):
         super().__init__()
         self.num_layers = num_layers
-        self.lin_in = nn.Linear(in_feat, hidden_feat)
+        self.lin_in = nn.Linear(in_feat, hidden_feat, bias=use_bias)
         #self.lin_in = KANLayer(in_feat, hidden_feat, grid_feat, addbias=use_bias)
         self.lins = torch.nn.ModuleList()
         for i in range(num_layers):
@@ -65,13 +65,13 @@ def eval(args, feat, adj, model):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     # data
-    parser.add_argument('--path', type=str, default='/home/sitao/kan_gnn/data/')
+    parser.add_argument('--path', type=str, default='./data/')
     parser.add_argument('--name', type=str, default='Cora')
     parser.add_argument('--logger_path', type=str, default='logger/esm')
     # model
     parser.add_argument('--dropout', type=float, default=0.)
-    parser.add_argument('--hidden_size', type=int, default=2)
-    parser.add_argument('--grid_size', type=int, default=2)
+    parser.add_argument('--hidden_size', type=int, default=256)
+    parser.add_argument('--grid_size', type=int, default=200)
     parser.add_argument('--n_layers', type=int, default=2)
     # training
     parser.add_argument('--epochs', type=int, default=1000)
@@ -110,6 +110,7 @@ if __name__ == "__main__":
                    out_feat=out_feat, 
                    grid_feat=args.grid_size,
                    num_layers=args.n_layers,
+                   use_bias=False,
                   ).to(args.device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
