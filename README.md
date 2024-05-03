@@ -20,6 +20,8 @@ That is having a Linear Layer to project the input feature in to latent space fi
 
 Rather than directly using the KAN Layer for input features like: self.lin_in = KANLayer(in_feat, hidden_feat, grid_feat, addbias=use_bias)
 
+**! ! ! If you do not have the Linear Layer for low-dimensional latent feature projection, KAN WILL NOT HAVE ANY TRAINING SIGNAL (this is really interesting, expect to work on some theoretical aspects after obtaining some experimental results)**
+
 Dont know if the trick works for images, languages, etc.
 
 
