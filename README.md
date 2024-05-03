@@ -1,6 +1,4 @@
-# GraphKAN
-
-Implementation of Graph Neural Network version of Kolmogorov Arnold Networks (GraphKAN)
+# GraphKAN -- Implementation of Graph Neural Network version of Kolmogorov Arnold Networks (GraphKAN)
 
 The only dependencies are torch and pytorch_geometric.
 
@@ -12,7 +10,9 @@ Thanks to the original implementations KAN(https://github.com/KindXiaoming/pykan
 
 Still at experimental stage to see if KAN really works on graph-structured data.
 
-Two key experimental observations:
+_______________________________________________________________________________
+
+## Two key experimental observations:
 
 (1) It is way much better to implment KAN for graphs in the latent feature space.
 
